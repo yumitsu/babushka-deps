@@ -1,4 +1,4 @@
-dep 'etcd', :version, :patchlevel do
+dep 'etcd', :version, :patchlevel, :prefix do
     version.default! '0.5.0'
     patchlevel.default! 'alpha.3'
     prefix.default!(shell('whoami') == 'root' ? '/usr/bin' : '~/bin')
