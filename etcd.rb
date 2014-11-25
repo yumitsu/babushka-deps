@@ -20,15 +20,20 @@ dep 'etcd', :version, :patchlevel, :prefix do
     end
 
     def binaries_presents?
-        binaries.select{|binary| File.executable?(prefix / binary)}.size == 3
-
+        binaries.select{|binary| File.exist?(prefix / binary) and File.executable?(prefix / binary)}.size == 3
     end
 
     met? {
-        in_path? 'etcd' and binaries_presents?.tap {|res|
-            log "binaries executable?: #{res}."
-        }
+        in_path? 'etcd' and binaries_presents?
     }
 
+    meet {
+        Babushka::Resource.extract source_uri do |path|
+            binaries.each{|binary| 
+                shell "cp #{binary} #{prefix}"
+            }
+        end
 
+        log_ok "binaries copied to #{prefix}"
+    }
 end
