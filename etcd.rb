@@ -20,10 +20,12 @@ dep 'etcd', :version, :patchlevel, :prefix do
     end
 
     def binaries_presents?
-        binaries.select {|binary| File.executable?(prefix / binary)}
+        binaries.select{|binary| File.executable?(prefix / binary)}.size == 3
     end
 
     met? {
         in_path? 'etcd' and binaries_presents?
     }
+
+
 end
