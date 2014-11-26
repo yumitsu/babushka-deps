@@ -1,6 +1,7 @@
-dep 'user bin' do
+dep 'userbin', :path do
+    path.default! File.absolute_path("~/bin")
     met? {
-        "~/bin".p.exists? and in_path?(File.absolute_path("~/bin"))
+        path.dir? and in_path? path
     }
 
     meet {
