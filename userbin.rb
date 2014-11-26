@@ -4,7 +4,7 @@ dep 'userbin' do
     end
 
     met? {
-        path.dir? and in_path? path
+        path.p.directory? and in_path? path
     }
 
     meet {
