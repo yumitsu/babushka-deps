@@ -24,7 +24,7 @@ dep 'etcd', :version, :patchlevel, :prefix do
     end
 
     met? {
-        in_path? 'etcd' and binaries_presents?
+        in_path? 'etcd' and binaries_presents? and prefix.exist? and prefix.writeable?
     }
 
     meet {
