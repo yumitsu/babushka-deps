@@ -3,9 +3,6 @@ dep 'cjdns' do
   met? {
     !which('cjdroute').nil?
   }
-  meet {
-    true
-  }
 end
 
 dep 'cjdns.src', :cjdns_bin_path, :cjdns_config_path do
@@ -16,7 +13,7 @@ dep 'cjdns.src', :cjdns_bin_path, :cjdns_config_path do
 
   source 'https://github.com/cjdelisle/cjdns/archive/master.zip'
 
-  provides cjdns_bin_path / 'cjdroute'
+  provides 'cjdroute'
 
   configure {
     true
