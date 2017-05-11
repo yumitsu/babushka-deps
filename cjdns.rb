@@ -14,16 +14,15 @@ dep 'cjdns.installed' do
   }
 end
 
-dep 'cjdns.src', :cjdns_prefix, :cjdns_config_path do
-  cjdns_prefix.default! '/usr'
+dep 'cjdns.src', :cjdns_bin_path, :cjdns_config_path do
+  cjdns_bin_path.default! '/usr/bin'
   cjdns_config_path.default! '/etc'
 
   requires 'python.bin', 'yumitsu:nodejs.bin', 'unzip.bin'
 
   source 'https://github.com/cjdelisle/cjdns/archive/master.zip'
 
-  prefix cjdns_prefix
-  provides cjdns_prefix / 'bin/cjdroute'
+  provides cjdns_bin_path / 'cjdroute'
 
   configure {
     true
@@ -33,7 +32,7 @@ dep 'cjdns.src', :cjdns_prefix, :cjdns_config_path do
   }
   install {
     log_shell "generating config", "./cjdroute --genconf > cjdroute.conf"
-    log_shell "copy binary to #{provides}", "cp ./cjdroute #{provides}"
+    log_shell "copy binary to #{cjdns_bin_path}", "cp ./cjdroute #{cjdns_bin_path / 'cjdroute'}"
     log_shell "moving config to #{cjdns_config_path}", "mv ./cjdroute.conf #{cjdns_config_path / 'cjdroute.conf'}"
   }
   postinstall {
