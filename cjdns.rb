@@ -33,7 +33,7 @@ dep 'cjdns.src', :cjdns_prefix, :cjdns_config_path do
   }
   install {
     log_shell "generating config", "./cjdroute --genconf > cjdroute.conf"
-    log_shell "copy binary to #{provides.dirname}", "cp ./cjdroute #{provides}"
+    log_shell "copy binary to #{provides}", "cp ./cjdroute #{provides}"
     log_shell "moving config to #{cjdns_config_path}", "mv ./cjdroute.conf #{cjdns_config_path / 'cjdroute.conf'}"
   }
   postinstall {
