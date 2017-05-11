@@ -43,3 +43,5 @@ dep 'cjdns.src', :cjdns_prefix, :cjdns_config_path do
     end
   }
 end
+
+dep 'unzip.bin'
