@@ -1,16 +1,10 @@
 dep 'cjdns' do
-  requires 'cjdns.installed'
-  met? {}
-  meet {
-
-  }
-end
-
-dep 'cjdns.installed' do
   requires_when_unmet 'cjdns.src'
-
   met? {
-    !which('cjdroute').nil? and '/etc/cjdroute.conf'.p.exists?
+    !which('cjdroute').nil?
+  }
+  meet {
+    true
   }
 end
 
@@ -18,7 +12,7 @@ dep 'cjdns.src', :cjdns_bin_path, :cjdns_config_path do
   cjdns_bin_path.default! '/usr/bin'
   cjdns_config_path.default! '/etc'
 
-  requires 'python.bin', 'yumitsu:nodejs.bin', 'unzip.bin'
+  requires_when_unmet 'python.bin', 'yumitsu:nodejs.bin', 'unzip.bin'
 
   source 'https://github.com/cjdelisle/cjdns/archive/master.zip'
 
