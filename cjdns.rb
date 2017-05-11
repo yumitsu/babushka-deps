@@ -18,7 +18,7 @@ dep 'cjdns.src', :cjdns_prefix, :cjdns_config_path do
   cjdns_prefix.default! '/usr'
   cjdns_config_path.default! '/etc'
 
-  requires 'python.bin', 'nodejs.bin'
+  requires 'python.bin', 'yumitsu:nodejs.bin'
 
   source 'https://github.com/cjdelisle/cjdns/archive/master.zip'
 
