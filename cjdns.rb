@@ -37,7 +37,7 @@ dep 'cjdns.src', :cjdns_bin_path, :cjdns_config_path do
   }
   postinstall {
     unless which('systemctl').nil?
-      log_shell "installing systemd service", "cp ./contrib/systemd/cjdns.service /etc/systemd/system/cjdns.service"
+      log_shell "installing systemd service", "cp ./contrib/systemd/*.service /etc/systemd/system/"
       log_shell "enabling systemd service", "systemctl enable cjdns"
     end
   }
